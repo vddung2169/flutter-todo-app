@@ -4,7 +4,7 @@ import 'package:todo_app/config/routes/routes.dart';
 
 final routesProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-      initialLocation: RouteLocation.home,
+      initialLocation: RouteLocation.createTask,
       navigatorKey: navigationKey,
       routes: appRoutes);
 });
