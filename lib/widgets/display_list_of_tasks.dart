@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:todo_app/data/data.dart';
 import 'package:todo_app/ultils/extensions.dart';
-import 'package:todo_app/widgets/common_container.dart';
 import 'package:todo_app/widgets/widgets.dart';
 
 class DisplayListOfTasks extends StatelessWidget {
@@ -39,7 +37,19 @@ class DisplayListOfTasks extends StatelessWidget {
                   top: 10, left: 16, bottom: 10, right: 16),
               itemBuilder: (ctx, index) {
                 final task = tasks[index];
-                return TaskTile(task: task);
+                return InkWell(
+                    onLongPress: () {
+                      // Todo Delete Task
+                    },
+                    onTap: () async {
+                      // Todo show Task detail
+                      await showModalBottomSheet(
+                          context: context,
+                          builder: (ctx) {
+                            return TaskDetails(task: task);
+                          });
+                    },
+                    child: TaskTile(task: task));
               },
               separatorBuilder: (BuildContext context, int index) {
                 return const Divider(
