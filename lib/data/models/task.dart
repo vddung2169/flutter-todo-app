@@ -39,7 +39,7 @@ class Task extends Equatable {
       TaskKeys.note: note,
       TaskKeys.time: time,
       TaskKeys.date: date,
-      TaskKeys.isCompleted: isCompleted,
+      TaskKeys.isCompleted: isCompleted ? 1 : 0,
     };
   }
 
@@ -50,7 +50,7 @@ class Task extends Equatable {
       note: map[TaskKeys.note],
       time: map[TaskKeys.time],
       date: map[TaskKeys.date],
-      isCompleted: map[TaskKeys.isCompleted],
+      isCompleted: map[TaskKeys.isCompleted] == 1 ? true : false,
     );
   }
 

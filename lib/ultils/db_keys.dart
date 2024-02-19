@@ -8,7 +8,7 @@ class DBKeys {
   static const String dbname = 'tasks.db';
   static const String idColumn = 'id';
   static const String titleColumn = 'title';
-  static const String noteColumn = 'v';
+  static const String noteColumn = 'note';
   static const String timeColumn = 'time';
   static const String dateColumn = 'date';
   static const String isCompletedColumn = 'isCompleted';

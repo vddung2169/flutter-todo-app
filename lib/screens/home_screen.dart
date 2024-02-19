@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/config/routes/routes.dart';
 import 'package:todo_app/data/data.dart';
+import 'package:todo_app/providers/providers.dart';
 import 'package:todo_app/ultils/ultils.dart';
 import 'package:todo_app/widgets/widgets.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   static HomeScreen builder(BuildContext context, GoRouterState state) =>
       const HomeScreen();
 
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colors = context.colorScheme;
     final sizeDevice = context.deviceSize;
+    final taskState = ref.watch(taskProvider);
+
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
     // DateTime date = DateTime(now.year, now.month, now.day);
@@ -56,41 +60,15 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const DisplayListOfTasks(tasks: [
-                    Task(
-                        title: 'Reading book',
-                        note: 'Page 15',
-                        time: '10:15',
-                        date: '2024-02-18',
-                        isCompleted: false),
-                    Task(
-                        title: 'Clean the house',
-                        note: 'No',
-                        time: '11:15',
-                        date: '2024-02-18',
-                        isCompleted: false)
-                  ]),
+                  DisplayListOfTasks(tasks: taskState.tasks),
                   const Gap(20),
                   Text(
                     'Completed',
                     style: context.textTheme.headlineMedium,
                   ),
                   const Gap(10),
-                  const DisplayListOfTasks(
-                    tasks: [
-                      Task(
-                          title: 'Code Flutter',
-                          note: 'Done Screen',
-                          time: '10:15',
-                          date: '2024-02-18',
-                          isCompleted: true),
-                      Task(
-                          title: 'Up story Facebook',
-                          note: '',
-                          time: '11:15',
-                          date: '2024-02-18',
-                          isCompleted: true)
-                    ],
+                  DisplayListOfTasks(
+                    tasks: taskState.tasks,
                     isCompletedTasks: true,
                   ),
                   const Gap(20),

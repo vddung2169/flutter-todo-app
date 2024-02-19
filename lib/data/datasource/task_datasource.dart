@@ -70,4 +70,19 @@ class TaskDataSource {
       return Task.fromJson(data[i]);
     });
   }
+
+  // Delete the tasks table
+  Future<void> deleteTasksTable() async {
+    final db = await database;
+    await db.execute('''
+      CREATE TABLE ${DBKeys.dbTable}(
+        ${DBKeys.idColumn} INTEGER PRIMARY KEY AUTOINCREMENT,
+        ${DBKeys.titleColumn} TEXT,
+        ${DBKeys.noteColumn} TEXT,
+        ${DBKeys.timeColumn} TEXT,
+        ${DBKeys.dateColumn} TEXT,
+        ${DBKeys.isCompletedColumn} INTEGER
+      )
+    ''');
+  }
 }

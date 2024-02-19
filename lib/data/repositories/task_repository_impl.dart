@@ -40,4 +40,13 @@ class TaskRepositoryImpl implements TaskRepository {
       throw '$e';
     }
   }
+
+  @override
+  Future<void> deleteTable() async {
+    try {
+      await _dataSource.deleteTasksTable();
+    } catch (e) {
+      throw '$e';
+    }
+  }
 }
