@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_app/data/data.dart';
 import 'package:todo_app/providers/providers.dart';
-import 'package:todo_app/ultils/extensions.dart';
 import 'package:todo_app/ultils/ultils.dart';
 import 'package:todo_app/widgets/widgets.dart';
 
@@ -16,8 +15,7 @@ class DisplayListOfTasks extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final deviceSize = context.deviceSize;
-    final height =
-        isCompletedTasks ? deviceSize.height * 0.2 : deviceSize.height * 0.2;
+    final height = deviceSize.height * 0.5;
     final emptyTaskMessage = isCompletedTasks
         ? 'You have not completed any task yet'
         : 'You have no task to do';

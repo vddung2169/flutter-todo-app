@@ -35,7 +35,9 @@ class TaskTile extends StatelessWidget {
                   decoration: textDecoration,
                 ),
               ),
-              Text(task.time)
+              Row(
+                children: [Text(task.time), Gap(10), Text(task.date)],
+              ),
             ],
           ),
         ),
