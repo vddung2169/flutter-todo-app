@@ -5,14 +5,14 @@ import 'package:todo_app/ultils/extensions.dart';
 class CommonTextField extends StatelessWidget {
   const CommonTextField(
       {super.key,
-      required this.title,
+      this.title,
       required this.hintText,
       this.controller,
       this.maxLine,
       this.suffixIcon,
       this.readonly = false});
 
-  final String title;
+  final String? title;
   final String hintText;
   final TextEditingController? controller;
   final int? maxLine;
@@ -25,7 +25,7 @@ class CommonTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          title,
+          title ?? '',
           style: context.textTheme.titleLarge,
         ),
         const Gap(10),

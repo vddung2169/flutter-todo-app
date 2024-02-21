@@ -3,9 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:timezone/timezone.dart';
+import 'package:timezone/timezone.dart';
 import 'package:todo_app/config/routes/routes.dart';
 import 'package:todo_app/data/data.dart';
 import 'package:todo_app/providers/providers.dart';
+import 'package:todo_app/service/local_notification.dart';
 import 'package:todo_app/ultils/ultils.dart';
 import 'package:todo_app/widgets/widgets.dart';
 
@@ -77,8 +80,12 @@ class _CreateTaskScreenState extends ConsumerState<CreateTaskScreen> {
           date: DateFormat.yMMMd().format(date),
           isCompleted: false);
       await ref.read(taskProvider.notifier).createTask(task).then((value) {
+        AppAlerts.displaySnackBar(context, 'Task created successfully');
+        LocalNotification.showScheduleNotification(task);
         context.go(RouteLocation.home);
       });
+    } else {
+      AppAlerts.displaySnackBar(context, 'Title cannot be empty!');
     }
   }
 
